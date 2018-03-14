@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.orpuwupetup.musicalstructureapp.CurrentActivity"
+    >
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundBlack"
+    >
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageButton
+            android:id="@+id/home"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/home_unacitve"
+            android:onClick="changeActivity"
+            app:layout_constraintEnd_toStartOf="@id/current"
+
+            app:layout_constraintStart_toStartOf="parent" />
+        <ImageButton
+            android:id="@+id/current"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/transparent"
+            android:scaleType="centerCrop"
+            android:onClick="changeActivity"
+            android:src="@drawable/ic_play"
+            app:layout_constraintEnd_toStartOf="@id/library"
+            app:layout_constraintStart_toEndOf="@id/home"
+            />
+        <ImageButton
+            android:id="@+id/library"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/transparent"
+            android:onClick="changeActivity"
+            android:scaleType="centerCrop"
+            android:src="@drawable/library_unactive"
+            app:layout_constraintEnd_toStartOf="@id/favourites"
+
+            app:layout_constraintStart_toEndOf="@id/current" />
+        <ImageButton
+            android:id="@+id/favourites"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/transparent"
+            android:onClick="changeActivity"
+            android:scaleType="centerCrop"
+            android:src="@drawable/unactive_favourites"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toEndOf="@id/library" />
+
+
+    </android.support.constraint.ConstraintLayout>
+    <View
+        android:layout_width="250dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@id/menu"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="1dp" />
+
+</android.support.constraint.ConstraintLayout>
+</layout>
