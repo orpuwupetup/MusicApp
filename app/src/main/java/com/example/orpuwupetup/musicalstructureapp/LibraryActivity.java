@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
 import com.example.orpuwupetup.musicalstructureapp.databinding.ActivityLibraryBinding;
 
@@ -17,6 +18,7 @@ public class LibraryActivity extends AppCompatActivity {
     //this activity variables
     ActivityLibraryBinding binding;
     boolean isPlaying = false;
+    boolean wasPaused = false;
     public ArrayList<Song> songs;
 
     @Override
@@ -29,6 +31,7 @@ public class LibraryActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent != null){
             isPlaying = intent.getBooleanExtra("IsPlaying", isPlaying);
+            wasPaused = intent.getBooleanExtra("WasPaused", wasPaused);
             Bundle args2 = intent.getBundleExtra("BUNDLE");
             songs = (ArrayList<Song>) args2.getSerializable("SONGSLIST");
 
@@ -36,7 +39,19 @@ public class LibraryActivity extends AppCompatActivity {
         //if nothing is playing, turn of current song display
         if(!isPlaying){
             binding.currentSong.setVisibility(View.GONE);
+            binding.currentPlayButton.setBackgroundResource(R.drawable.ic_play);
+        }else{
+            binding.currentPlayButton.setBackgroundResource(R.drawable.ic_pause);
         }
+        if(wasPaused){
+            binding.currentSong.setVisibility(View.VISIBLE);
+        }
+
+
+        //declaring and setting adapter for showing songs
+        SongAdapter itemAdaper = new SongAdapter(LibraryActivity.this, songs);
+        ListView listView = binding.list;
+        listView.setAdapter(itemAdaper);
     }
 
     //one method for all buttons associated with changing activity
@@ -59,6 +74,7 @@ public class LibraryActivity extends AppCompatActivity {
             args.putSerializable("SONGSLIST", (Serializable) songs);
             changeActivity.putExtra("BUNDLE", args);
             changeActivity.putExtra("IsPlaying", isPlaying);
+            changeActivity.putExtra("WasPaused", wasPaused);
             LibraryActivity.this.startActivity(changeActivity);
         }
 

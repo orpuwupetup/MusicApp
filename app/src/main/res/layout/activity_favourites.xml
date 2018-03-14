@@ -120,7 +120,6 @@
             android:background="@color/transparent"
             android:padding="5dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_play"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

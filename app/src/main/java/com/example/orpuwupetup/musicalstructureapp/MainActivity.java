@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         //I'm using data binding library to cut out some of unnecessary code lines
     ActivityMainBinding binding;
     boolean isPlaying = false;
+    boolean wasPaused = false;
     public ArrayList<Song> songs;
 
     @Override
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent != null){
             isPlaying = intent.getBooleanExtra("IsPlaying", isPlaying);
+            wasPaused = intent.getBooleanExtra("WasPaused", wasPaused);
             Bundle args2 = intent.getBundleExtra("BUNDLE");
             if(intent.getBundleExtra("BUNDLE") != null) {
                 songs = (ArrayList<Song>) args2.getSerializable("SONGSLIST");
@@ -59,11 +61,36 @@ public class MainActivity extends AppCompatActivity {
         //hide current playing song display when nothing is playing)
         if(!isPlaying) {
             binding.currentSong.setVisibility(View.GONE);
+            binding.playButton.setBackgroundResource(R.drawable.ic_play);
+            binding.currentPlayButton.setBackgroundResource(R.drawable.ic_play);
         }else{
+            binding.playButton.setBackgroundResource(R.drawable.ic_pause);
+            binding.currentPlayButton.setBackgroundResource(R.drawable.ic_pause);
+            binding.currentSong.setVisibility(View.VISIBLE);
+
+        }
+        if(wasPaused){
             binding.currentSong.setVisibility(View.VISIBLE);
         }
 
-
+        //set on click listener on Play button
+        binding.playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int playedCount = 0;
+                if (!isPlaying){
+                    isPlaying = true;
+                    binding.currentSong.setVisibility(View.VISIBLE);
+                    binding.playButton.setBackgroundResource(R.drawable.ic_pause);
+                    binding.currentPlayButton.setBackgroundResource(R.drawable.ic_pause);
+                }else{
+                    isPlaying = false;
+                    wasPaused = true;
+                    binding.playButton.setBackgroundResource(R.drawable.ic_play);
+                    binding.currentPlayButton.setBackgroundResource(R.drawable.ic_play);
+                }
+            }
+        });
 
 
     }
@@ -88,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             args.putSerializable("SONGSLIST", (Serializable) songs);
             changeActivity.putExtra("BUNDLE", args);
             changeActivity.putExtra("IsPlaying", isPlaying);
+            changeActivity.putExtra("WasPaused", wasPaused);
 
             MainActivity.this.startActivity(changeActivity);
         }

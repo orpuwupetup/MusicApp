@@ -15,6 +15,7 @@ public class CurrentActivity extends AppCompatActivity {
 
     ActivityCurrentBinding binding;
     boolean isPlaying = false;
+    boolean wasPaused = false;
     public ArrayList<Song> songs;
 
     @Override
@@ -27,6 +28,7 @@ public class CurrentActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent != null){
             isPlaying = intent.getBooleanExtra("IsPlaying", isPlaying);
+            wasPaused = intent.getBooleanExtra("WasPaused", wasPaused);
             Bundle args2 = intent.getBundleExtra("BUNDLE");
             songs = (ArrayList<Song>) args2.getSerializable("SONGSLIST");
 
@@ -54,6 +56,7 @@ public class CurrentActivity extends AppCompatActivity {
             args.putSerializable("SONGSLIST", (Serializable) songs);
             changeActivity.putExtra("BUNDLE", args);
             changeActivity.putExtra("IsPlaying", isPlaying);
+            changeActivity.putExtra("WasPaused", wasPaused);
             CurrentActivity.this.startActivity(changeActivity);
         }
 

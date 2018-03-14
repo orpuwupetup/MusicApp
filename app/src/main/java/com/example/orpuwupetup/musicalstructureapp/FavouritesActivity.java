@@ -15,6 +15,7 @@ public class FavouritesActivity extends AppCompatActivity {
 
     public ArrayList<Song> songs;
     ActivityFavouritesBinding binding;
+    boolean wasPaused = false;
     boolean isPlaying = false;
 
     @Override
@@ -27,6 +28,7 @@ public class FavouritesActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent != null){
             isPlaying = intent.getBooleanExtra("IsPlaying", isPlaying);
+            wasPaused = intent.getBooleanExtra("WasPaused", wasPaused);
             Bundle args2 = intent.getBundleExtra("BUNDLE");
             songs = (ArrayList<Song>) args2.getSerializable("SONGSLIST");
         }
@@ -34,6 +36,12 @@ public class FavouritesActivity extends AppCompatActivity {
         //if nothing is playing, turn of current song display
         if (!isPlaying) {
             binding.currentSong.setVisibility(View.GONE);
+            binding.currentPlayButton.setBackgroundResource(R.drawable.ic_play);
+        }else{
+            binding.currentPlayButton.setBackgroundResource(R.drawable.ic_pause);
+        }
+        if(wasPaused){
+            binding.currentSong.setVisibility(View.VISIBLE);
         }
     }
 
@@ -57,6 +65,7 @@ public class FavouritesActivity extends AppCompatActivity {
             args.putSerializable("SONGSLIST", (Serializable) songs);
             changeActivity.putExtra("BUNDLE", args);
             changeActivity.putExtra("IsPlaying", isPlaying);
+            changeActivity.putExtra("WasPaused", wasPaused);
             FavouritesActivity.this.startActivity(changeActivity);
         }
 
