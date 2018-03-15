@@ -1,8 +1,5 @@
 package com.example.orpuwupetup.musicalstructureapp;
 
-import android.media.Image;
-import android.widget.ImageButton;
-
 import java.io.Serializable;
 
 /**
@@ -12,7 +9,7 @@ import java.io.Serializable;
 public class Song implements Serializable{
 
     //declaration of variables
-    private String mArtist, mTitle;
+    private String mArtist, mTitle, mWhichActivityIsOn;
     private int mLengthInSeconds, mAlbumCover;
     private boolean mLiked, mCurrent;
 
@@ -65,5 +62,15 @@ public class Song implements Serializable{
 
     public void current(boolean current) {
         mCurrent = current;
+    }
+
+    //setter and getter methods for mWhichActivityIsOn variable (used to not duplicate code from song
+    //adapter, and make it possible to use just a single one)
+    public String getWhichActivityIsOn(){
+        return mWhichActivityIsOn;
+    }
+
+    public void setWhichActivityIsOn(String activityName){
+        mWhichActivityIsOn = activityName;
     }
 }

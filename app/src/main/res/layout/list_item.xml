@@ -4,20 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="@color/colorAccent">
-<View
-    android:layout_margin="1dp"
-    android:layout_width="match_parent"
-    android:background="@color/backgroundBlack"
-    android:layout_height="match_parent"/>
-    <View
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:layout_constraintStart_toStartOf="@id/coverImage"
-        app:layout_constraintEnd_toEndOf="@id/coverImage"
-        app:layout_constraintTop_toTopOf="@id/coverImage"
-        app:layout_constraintBottom_toBottomOf="@id/coverImage"
-        android:background="@color/colorAccent"/>
+    android:descendantFocusability="blocksDescendants"
+    android:background="@color/backgroundBlack">
     <ImageView
         android:id="@+id/coverImage"
         android:layout_width="80dp"
@@ -55,7 +43,7 @@
         android:textStyle="bold"
         android:maxLines="2"
         app:layout_constraintStart_toStartOf="@id/title"
-        android:textColor="#ffffff"
+        android:textColor="#cacaca"
         app:layout_constraintTop_toBottomOf="@id/title"/>
     <TextView
         android:id="@+id/songLength"
@@ -73,7 +61,6 @@
         android:layout_height="60dp"
         android:background="@color/transparent"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_unlikednoborder"
         app:layout_constraintStart_toEndOf="@id/songLength"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/horizontalGuidline"

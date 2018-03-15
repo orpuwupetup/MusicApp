@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,7 +48,7 @@ public class SongAdapter extends ArrayAdapter<Song> {
         }
 
         //get current song from Song class
-        Song currentSong = getItem(position);
+        final Song currentSong = getItem(position);
 
         // finding view for showing title of the song
         TextView title = (TextView) listItemView.findViewById(R.id.title);
@@ -78,6 +79,39 @@ public class SongAdapter extends ArrayAdapter<Song> {
         //finding view for showing album cover of the song and displaying it
         ImageView coverImage = (ImageView) listItemView.findViewById(R.id.coverImage);
         coverImage.setImageResource(currentSong.getAlbumCover());
+
+        //finding View for displaying Like icon, or deleteFromFavourites icon and setting it
+        //according to which of activities is opened
+        final ImageButton likedOrDeleteFromFavourites = (ImageButton) listItemView.findViewById(R.id.likedOrDeleteFromFavourites);
+        if(currentSong.getWhichActivityIsOn().equalsIgnoreCase("library")){
+            if(currentSong.liked()){
+                likedOrDeleteFromFavourites.setBackgroundResource(R.drawable.ic_likednoborder);
+                likedOrDeleteFromFavourites.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        likedOrDeleteFromFavourites.setBackgroundResource(R.drawable.ic_unlikednoborder);
+                        currentSong.liked(false);
+                    }
+                });
+            }else{
+                likedOrDeleteFromFavourites.setBackgroundResource(R.drawable.ic_unlikednoborder);
+                likedOrDeleteFromFavourites.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        likedOrDeleteFromFavourites.setBackgroundResource(R.drawable.ic_likednoborder);
+                        currentSong.liked(true);
+                    }
+                });
+            }
+        }else if(currentSong.getWhichActivityIsOn().equalsIgnoreCase("favourites")){
+            likedOrDeleteFromFavourites.setBackgroundResource(R.drawable.ic_cancel);
+            likedOrDeleteFromFavourites.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    currentSong.liked(false);
+                }
+            });
+        }
 
         // return whole view with song informations
         return listItemView;

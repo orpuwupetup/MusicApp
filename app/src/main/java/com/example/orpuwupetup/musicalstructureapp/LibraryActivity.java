@@ -48,10 +48,67 @@ public class LibraryActivity extends AppCompatActivity {
         }
 
 
+        //set which activity is open for all of the songs in songs array, so that SongAdapter could
+        //set different images for some view in list, according to which activity is opened
+        for(int i = 0; i<songs.size(); i++){
+            songs.get(i).setWhichActivityIsOn("library");
+        }
+
         //declaring and setting adapter for showing songs
         SongAdapter itemAdaper = new SongAdapter(LibraryActivity.this, songs);
         ListView listView = binding.list;
         listView.setAdapter(itemAdaper);
+
+        //listeners for changing song to next and previous
+        binding.previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < songs.size(); i++) {
+                    if (songs.get(i).current()) {
+                        if (i == 0) {
+                            songs.get(songs.size() - 1).current(true);
+                            binding.title.setText(songs.get(songs.size() - 1).title());
+                            binding.aritst.setText(songs.get(songs.size() - 1).artist());
+                        } else {
+                            songs.get(i - 1).current(true);
+                            binding.title.setText(songs.get(i - 1).title());
+                            binding.aritst.setText(songs.get(i - 1).artist());
+                        }
+                        songs.get(i).current(false);
+                        break;
+                    }
+                }
+            }
+        });
+        binding.next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < songs.size(); i++) {
+                    if (songs.get(i).current()) {
+                        if (i == songs.size() - 1) {
+                            songs.get(0).current(true);
+                            binding.title.setText(songs.get(0).title());
+                            binding.aritst.setText(songs.get(0).artist());
+                        } else {
+                            songs.get(i + 1).current(true);
+                            binding.title.setText(songs.get(i + 1).title());
+                            binding.aritst.setText(songs.get(i + 1).artist());
+                        }
+                        songs.get(i).current(false);
+                        break;
+                    }
+                }
+            }
+        });
+
+        //method for setting current song view title and artist TextViews to right values on create
+        for (int i = 0; i < songs.size(); i++) {
+            if (songs.get(i).current()) {
+                binding.title.setText(songs.get(i).title());
+                binding.aritst.setText(songs.get(i).artist());
+                break;
+            }
+        }
     }
 
     //one method for all buttons associated with changing activity
