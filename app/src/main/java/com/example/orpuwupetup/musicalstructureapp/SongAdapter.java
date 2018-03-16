@@ -68,7 +68,7 @@ public class SongAdapter extends ArrayAdapter<Song> {
         //converting length of song from seconds to minutes and seconds and showing it in TextView
         int minutes = currentSong.length()/60;
         int seconds = currentSong.length()%60;
-        String lengthOfTheSong = " ";
+        String lengthOfTheSong;
         if (seconds<10){
             lengthOfTheSong = "" + minutes + ":" + "0" + seconds;
         }else{
@@ -109,6 +109,7 @@ public class SongAdapter extends ArrayAdapter<Song> {
                 @Override
                 public void onClick(View v) {
                     currentSong.liked(false);
+                    //TO DO, add toast saying that user deleted song from favourites
                 }
             });
         }

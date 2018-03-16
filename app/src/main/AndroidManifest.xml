@@ -25,7 +25,8 @@
             android:name=".FavouritesActivity"
             android:label="Favourites" />
         <activity android:name=".CurrentActivity"
-            android:label="@string/now_playing"/>
+            android:label="@string/now_playing"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
 
 </manifest>

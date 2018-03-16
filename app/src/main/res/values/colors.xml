@@ -6,4 +6,5 @@
     <color name="backgroundBlack">#000000</color>
     <color name="transparent">#00000000</color>
     <color name="unactiveProgress">#a3994a</color>
+    <color name="artist_color">#cacaca</color>
 </resources>

@@ -2,9 +2,13 @@ package com.example.orpuwupetup.musicalstructureapp;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.orpuwupetup.musicalstructureapp.databinding.ActivityCurrentBinding;
 
@@ -16,6 +20,7 @@ public class CurrentActivity extends AppCompatActivity {
     ActivityCurrentBinding binding;
     boolean isPlaying = false;
     boolean wasPaused = false;
+    boolean shufflesOn = false;
     public ArrayList<Song> songs;
 
     @Override
@@ -33,6 +38,9 @@ public class CurrentActivity extends AppCompatActivity {
             songs = (ArrayList<Song>) args2.getSerializable("SONGSLIST");
 
         }
+
+        //check which song is current and display it on screen
+        displayCurrentSong();
     }
 
 
@@ -62,5 +70,60 @@ public class CurrentActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void displayCurrentSong(){
+        for(int i = 0; i < songs.size(); i++){
+            if(songs.get(i).current()){
+                binding.currentAlbumCover.setImageResource(songs.get(i).getAlbumCover());
+                binding.title.setText(songs.get(i).title());
+                binding.artist.setText(songs.get(i).artist());
+
+                //converting current songs length to minutes and seconds and making string out of outcome
+                //(setting random played time to make it more pleasing to the eye
+
+                int timePlayed = (int) (Math.random()*songs.get(i).length());
+                int timeLeft = songs.get(i).length() - timePlayed;
+                int minutesPlayed = timePlayed/60;
+                int secondsPlayed = timePlayed%60;
+                int minutesLeft = timeLeft/60;
+                int secondsLeft = timeLeft%60;
+
+                //calculate how many pixels wide should be timePlayed indicator, and set its width accordingly
+                ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) binding.songPlayedTime.getLayoutParams();
+                params.width = (timePlayed * binding.songLength.getLayoutParams().width)/ songs.get(i).length();
+                binding.songPlayedTime.setLayoutParams(params);
+
+                String timePlayedText;
+                if (secondsPlayed<10){
+                    timePlayedText = "" + minutesPlayed + ":" + "0" + secondsPlayed;
+                }else{
+                    timePlayedText = "" + minutesPlayed + ":" + secondsPlayed;
+                }
+
+                String timeLeftText;
+                if (secondsLeft<10){
+                    timeLeftText = "" + minutesLeft + ":" + "0" + secondsLeft;
+                }else{
+                    timeLeftText = "" + minutesLeft + ":" + secondsLeft;
+                }
+
+                binding.timePlayed.setText(timePlayedText);
+                binding.timeLeft.setText(timeLeftText);
+
+                //setting images for next and previous album covers
+                if (i == 0) {
+                    binding.previousAlbumCover.setImageResource(songs.get(songs.size() - 1).getAlbumCover());
+                    binding.nextAlbumCover.setImageResource(songs.get(i+1).getAlbumCover());
+                }else if (i == songs.size()-1){
+                    binding.previousAlbumCover.setImageResource(songs.get(i-1).getAlbumCover());
+                    binding.nextAlbumCover.setImageResource(songs.get(0).getAlbumCover());
+                }else{
+                    binding.previousAlbumCover.setImageResource(songs.get(i-1).getAlbumCover());
+                    binding.nextAlbumCover.setImageResource(songs.get(i+1).getAlbumCover());
+                }
+                break;
+            }
+        }
     }
 }
