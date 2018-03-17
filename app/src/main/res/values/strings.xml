@@ -3,4 +3,5 @@
     <string name="play_button">Play button.</string>
     <string name="main_screen">Home</string>
     <string name="now_playing">Now Playing</string>
+    <string name="zero_played_time">0:00</string>
 </resources>

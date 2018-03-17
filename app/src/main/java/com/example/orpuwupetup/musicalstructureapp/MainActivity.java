@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     boolean isPlaying = false;
     boolean wasPaused = false;
+    boolean shufflesOn = false;
     public ArrayList<Song> songs;
 
     @Override
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         if(intent != null){
             isPlaying = intent.getBooleanExtra("IsPlaying", isPlaying);
             wasPaused = intent.getBooleanExtra("WasPaused", wasPaused);
+            shufflesOn = intent.getBooleanExtra("isShuffle", shufflesOn);
             Bundle args2 = intent.getBundleExtra("BUNDLE");
             if(intent.getBundleExtra("BUNDLE") != null) {
                 songs = (ArrayList<Song>) args2.getSerializable("SONGSLIST");
@@ -106,7 +108,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 for (int i = 0; i < songs.size(); i ++){
                     if(songs.get(i).current()){
-                        if (i == 0){
+                        if (shufflesOn) {
+                            int random = (int)(Math.random()*songs.size());
+                            songs.get(random).current(true);
+                            binding.title.setText(songs.get(random).title());
+                            binding.aritst.setText(songs.get(random).artist());
+                        }else if (i == 0){
                             songs.get(songs.size()-1).current(true);
                             binding.title.setText(songs.get(songs.size()-1).title());
                             binding.aritst.setText(songs.get(songs.size()-1).artist());
@@ -126,7 +133,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 for (int i = 0; i < songs.size(); i ++){
                     if(songs.get(i).current()){
-                        if (i == songs.size()-1){
+                        if (shufflesOn) {
+                            int random = (int)(Math.random()*songs.size());
+                            songs.get(random).current(true);
+                            binding.title.setText(songs.get(random).title());
+                            binding.aritst.setText(songs.get(random).artist());
+                        }else if (i == songs.size()-1){
                             songs.get(0).current(true);
                             binding.title.setText(songs.get(0).title());
                             binding.aritst.setText(songs.get(0).artist());
@@ -138,6 +150,22 @@ public class MainActivity extends AppCompatActivity {
                         songs.get(i).current(false);
                         break;
                     }
+                }
+            }
+        });
+
+        //click listener for play button
+        binding.currentPlayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isPlaying){
+                    isPlaying = false;
+                    binding.playButton.setBackgroundResource(R.drawable.ic_play);
+                    binding.currentPlayButton.setBackgroundResource(R.drawable.ic_play);
+                }else{
+                    isPlaying = true;
+                    binding.playButton.setBackgroundResource(R.drawable.ic_pause);
+                    binding.currentPlayButton.setBackgroundResource(R.drawable.ic_pause);
                 }
             }
         });
@@ -176,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
             changeActivity.putExtra("BUNDLE", args);
             changeActivity.putExtra("IsPlaying", isPlaying);
             changeActivity.putExtra("WasPaused", wasPaused);
+            changeActivity.putExtra("isShuffle", shufflesOn);
 
             MainActivity.this.startActivity(changeActivity);
         }

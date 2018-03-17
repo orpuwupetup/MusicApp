@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -40,7 +41,7 @@ public class SongAdapter extends ArrayAdapter<Song> {
     }
 
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, @Nullable final View convertView, @NonNull ViewGroup parent) {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
@@ -108,7 +109,15 @@ public class SongAdapter extends ArrayAdapter<Song> {
             likedOrDeleteFromFavourites.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (currentSong.liked()) {
+                        Toast.makeText(getContext(), "You've deleted this song from favourites", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getContext(), "This song is already deleted from favourites", Toast.LENGTH_SHORT).show();
+                    }
                     currentSong.liked(false);
+
+
+
                     //TO DO, add toast saying that user deleted song from favourites
                 }
             });

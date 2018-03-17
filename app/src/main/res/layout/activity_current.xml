@@ -153,6 +153,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/currentAlbumCover" />
     <View
+        android:id="@+id/shadow"
         android:layout_width="240dp"
         android:layout_height="200dp"
         android:background="#60000000"
@@ -170,12 +171,23 @@
         app:layout_constraintTop_toTopOf="@id/dividingView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:id="@+id/nothingsPlaying"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nothings playing yet"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@id/songPlayedTime"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
     <ImageButton
         android:id="@+id/playButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:background="@color/transparent"
-        android:src="@drawable/ic_playnoborder"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="@id/songLength"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -194,7 +206,6 @@
         app:layout_constraintStart_toEndOf="@id/shuffle"/>
     <ImageButton
         android:background="@color/transparent"
-        android:src="@drawable/ic_shuffleonnoborder"
         android:id="@+id/shuffle"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -216,11 +227,11 @@
         app:layout_constraintStart_toEndOf="@id/playButton"/>
     <ImageButton
         android:background="@color/transparent"
-        android:src="@drawable/ic_unlikednoborder"
         android:id="@+id/liked"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:scaleType="centerCrop"
+        android:src="@drawable/ic_unlikednoborder"
         app:layout_constraintTop_toTopOf="@id/playButton"
         app:layout_constraintStart_toEndOf="@id/next"
         app:layout_constraintBottom_toBottomOf="@id/playButton"
