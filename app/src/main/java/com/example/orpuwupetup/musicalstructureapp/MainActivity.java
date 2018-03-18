@@ -34,17 +34,27 @@ public class MainActivity extends AppCompatActivity {
 
         //add songs to the list
         songs.add(new Song("Beyonce", "Best Beyonce Song", 195));
+        songs.get(0).setAlbumCover(R.drawable.beyonce);
         songs.add(new Song("Shakira", "Best Shakira Song", 127));
+        songs.get(1).setAlbumCover(R.drawable.shakira);
         songs.add(new Song("Madonna", "Best Madonna Song", 153));
+        songs.get(2).setAlbumCover(R.drawable.madonna);
         songs.add(new Song("BeeGees", "Best BeeGees Song", 169));
+        songs.get(3).setAlbumCover(R.drawable.beegees);
         songs.add(new Song("Jeniffer Lopez", "Best Jeniffer Lopez Song", 201));
+        songs.get(4).setAlbumCover(R.drawable.jlo);
         songs.add(new Song("Nirvana", "Best Nirvana Song", 218));
+        songs.get(5).setAlbumCover(R.drawable.nirvana);
         songs.add(new Song("Hunter", "Best Hunter Song", 172));
         songs.add(new Song("Michael Jackson", "Best Michael Jackson Song", 180));
+        songs.get(7).setAlbumCover(R.drawable.jackson);
         songs.add(new Song("Katy Perry", "Best Katy Perry Song", 241));
+        songs.get(8).setAlbumCover(R.drawable.katyperry);
         songs.add(new Song("Taylor Swift", "Best Taylor Swift Song", 132));
-        songs.add(new Song("Bos Hos", "Best Bos Hos Song", 213));
+        songs.add(new Song("Boss Hoss", "Best Boss Hoss Song", 213));
+        songs.get(10).setAlbumCover(R.drawable.bosshoss);
         songs.add(new Song("Metallica", "Best Metallica Song", 147));
+        songs.get(11).setAlbumCover(R.drawable.metallica);
 
         //get intent with updated songs list and isPlaying variable if this activity is called by
         //another activity
@@ -192,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
             changeActivity = new Intent(MainActivity.this, FavouritesActivity.class);
         }else if(v.getId() == binding.library.getId()){
             changeActivity = new Intent(MainActivity.this, LibraryActivity.class);
-        }else if(v.getId() == binding.title.getId() || v.getId() == binding.aritst.getId()){
+        }else if(v.getId() == binding.title.getId() || v.getId() == binding.aritst.getId() || v.getId() == binding.title.getId()){
             changeActivity = new Intent(MainActivity.this, CurrentActivity.class);
         }
 

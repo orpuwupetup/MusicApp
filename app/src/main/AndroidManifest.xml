@@ -11,7 +11,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/main_screen">
+            android:label="@string/main_screen"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,12 +22,17 @@
         </activity>
         <activity
             android:name=".LibraryActivity"
-            android:label="Library" />
+            android:label="Library"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".FavouritesActivity"
-            android:label="Favourites" />
+            android:label="Favourites"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".CurrentActivity"
             android:label="@string/now_playing"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
 

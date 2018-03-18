@@ -45,10 +45,9 @@ public class CurrentActivity extends AppCompatActivity {
         previousShuffleSong = (int)(Math.random()*songs.size());
 
         binding.nothingsPlaying.setVisibility(View.GONE);
-        if (isPlaying) {
             //check which song is current and display it on screen
             displayCurrentSong();
-        }else if (!wasPaused){
+        if (!wasPaused && !isPlaying){
             binding.currentAlbumCover.setVisibility(View.INVISIBLE);
             binding.previousAlbumCover.setVisibility(View.INVISIBLE);
             binding.nextAlbumCover.setVisibility(View.INVISIBLE);
@@ -75,6 +74,7 @@ public class CurrentActivity extends AppCompatActivity {
                         if(shufflesOn){
                             songs.get(nextShuffleSong).current(true);
                             nextShuffleSong = (int)(Math.random()*songs.size());
+                            previousShuffleSong = i;
                             break;
                         }else if (i == songs.size() - 1){
                             songs.get(0).current(true);
@@ -99,6 +99,7 @@ public class CurrentActivity extends AppCompatActivity {
                         if(shufflesOn){
                             songs.get(previousShuffleSong).current(true);
                             previousShuffleSong = (int)(Math.random()*songs.size());
+                            nextShuffleSong = i;
                             break;
                         }else if (i == 0){
                             songs.get(songs.size() - 1).current(true);

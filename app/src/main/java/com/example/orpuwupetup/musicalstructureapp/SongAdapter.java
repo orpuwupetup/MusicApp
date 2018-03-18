@@ -110,9 +110,9 @@ public class SongAdapter extends ArrayAdapter<Song> {
                 @Override
                 public void onClick(View v) {
                     if (currentSong.liked()) {
-                        Toast.makeText(getContext(), "You've deleted this song from favourites", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "You've deleted " + "\"" +currentSong.title()+ "\"" +" from favourites", Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(getContext(), "This song is already deleted from favourites", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "\"" + currentSong.title()+ "\"" + " is already deleted from favourites", Toast.LENGTH_SHORT).show();
                     }
                     currentSong.liked(false);
 

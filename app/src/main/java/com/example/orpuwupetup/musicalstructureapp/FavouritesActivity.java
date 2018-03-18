@@ -159,7 +159,7 @@ public class FavouritesActivity extends AppCompatActivity {
             changeActivity = new Intent(FavouritesActivity.this, LibraryActivity.class);
         } else if (v.getId() == binding.home.getId()) {
             changeActivity = new Intent(FavouritesActivity.this, MainActivity.class);
-        } else if (v.getId() == binding.current.getId() || v.getId() == binding.aritst.getId()) {
+        } else if (v.getId() == binding.current.getId() || v.getId() == binding.aritst.getId() || v.getId() == binding.title.getId()) {
             changeActivity = new Intent(FavouritesActivity.this, CurrentActivity.class);
         }
 

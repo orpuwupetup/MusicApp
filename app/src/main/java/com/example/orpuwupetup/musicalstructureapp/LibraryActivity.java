@@ -45,7 +45,7 @@ public class LibraryActivity extends AppCompatActivity {
         }else{
             binding.currentPlayButton.setBackgroundResource(R.drawable.ic_pause);
         }
-        if(wasPaused){
+        if(wasPaused || isPlaying){
             binding.currentSong.setVisibility(View.VISIBLE);
         }
 
@@ -146,7 +146,7 @@ public class LibraryActivity extends AppCompatActivity {
             changeActivity = new Intent(LibraryActivity.this, FavouritesActivity.class);
         }else if(v.getId() == binding.home.getId()){
             changeActivity = new Intent(LibraryActivity.this, MainActivity.class);
-        }else if(v.getId() == binding.current.getId() || v.getId() == binding.aritst.getId()){
+        }else if(v.getId() == binding.current.getId() || v.getId() == binding.aritst.getId() || v.getId() == binding.title.getId()){
             changeActivity = new Intent(LibraryActivity.this, CurrentActivity.class);
         }
 
