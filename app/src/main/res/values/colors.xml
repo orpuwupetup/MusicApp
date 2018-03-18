@@ -7,4 +7,6 @@
     <color name="transparent">#00000000</color>
     <color name="unactiveProgress">#a3994a</color>
     <color name="artist_color">#cacaca</color>
+    <color name="title_color">#ffffff</color>
+    <color name="playing_song">#FF3BA815</color>
 </resources>

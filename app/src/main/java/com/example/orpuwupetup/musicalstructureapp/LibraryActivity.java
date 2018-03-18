@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.orpuwupetup.musicalstructureapp.databinding.ActivityLibraryBinding;
 
@@ -23,6 +24,7 @@ public class LibraryActivity extends AppCompatActivity {
     boolean wasPaused = false;
     boolean shufflesOn = false;
     public ArrayList<Song> songs;
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,7 @@ public class LibraryActivity extends AppCompatActivity {
                         break;
                     }
                 }
+                refreshColors();
             }
         });
         binding.next.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +115,7 @@ public class LibraryActivity extends AppCompatActivity {
                         break;
                     }
                 }
+                refreshColors();
             }
         });
 
@@ -129,6 +133,8 @@ public class LibraryActivity extends AppCompatActivity {
             }
         });
 
+
+
         //method for setting current song view title and artist TextViews to right values on create
         setSongToCurrentSongDisplay();
 
@@ -145,6 +151,23 @@ public class LibraryActivity extends AppCompatActivity {
                 }
                 songs.get(position).current(true);
 
+                for (int i = 0; i < binding.list.getChildCount(); i ++) {
+
+                    Log.d("library", " child count = " + binding.list.getChildCount());
+
+                    title = (TextView) binding.list.getChildAt(i).findViewById(R.id.title);
+                    title.setTextColor(getResources().getColor(R.color.title_color));
+                }
+
+                if (title != null){
+                    title.setTextColor(getResources().getColor(R.color.title_color));
+                }
+
+                title = (TextView) view.findViewById(R.id.title);
+                title.setTextColor(getResources().getColor(R.color.playing_song));
+
+
+
                 // show current song display as Visible and set is playing and is paused as true, so
                 // other activities will know that some song is playing
                 binding.currentSong.setVisibility(View.VISIBLE);
@@ -156,6 +179,7 @@ public class LibraryActivity extends AppCompatActivity {
 
             }
         });
+        refreshColors();
     }
 
     //one method for all buttons associated with changing activity
@@ -194,6 +218,29 @@ public class LibraryActivity extends AppCompatActivity {
                 binding.aritst.setText(songs.get(i).artist());
                 break;
             }
+        }
+    }
+
+    void refreshColors (){
+
+        String currentTitle = " ";
+        for (int j = 0; j < songs.size(); j++) {
+            if (songs.get(j).current()) {
+                currentTitle = songs.get(j).title();
+                break;
+            }
+        }
+
+        for (int i = 0; i < binding.list.getChildCount(); i ++) {
+
+            title = (TextView) binding.list.getChildAt(i).findViewById(R.id.title);
+            if (title.getText().equals(currentTitle)) {
+                title.setTextColor(getResources().getColor(R.color.playing_song));
+            }else{
+                title.setTextColor(getResources().getColor(R.color.title_color));
+            }
+
+
         }
     }
 }

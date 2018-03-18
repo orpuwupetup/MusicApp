@@ -1,6 +1,7 @@
 package com.example.orpuwupetup.musicalstructureapp;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -53,6 +54,8 @@ public class SongAdapter extends ArrayAdapter<Song> {
 
         // finding view for showing title of the song
         TextView title = (TextView) listItemView.findViewById(R.id.title);
+
+
 
         // setting text of title to the title of current song
         title.setText(currentSong.title());
@@ -122,6 +125,14 @@ public class SongAdapter extends ArrayAdapter<Song> {
                 }
             });
         }
+
+        if (currentSong.current()){
+            title.setTextColor(getContext().getResources().getColor( R.color.playing_song));
+        }else{
+            title.setTextColor(getContext().getResources().getColor( R.color.title_color));
+        }
+
+
 
         // return whole view with song informations
         return listItemView;

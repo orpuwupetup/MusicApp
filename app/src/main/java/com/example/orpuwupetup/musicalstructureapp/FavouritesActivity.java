@@ -8,6 +8,7 @@ package com.example.orpuwupetup.musicalstructureapp;
         import android.view.View;
         import android.widget.AdapterView;
         import android.widget.ListView;
+        import android.widget.TextView;
 
         import com.example.orpuwupetup.musicalstructureapp.databinding.ActivityFavouritesBinding;
 
@@ -22,6 +23,7 @@ public class FavouritesActivity extends AppCompatActivity {
     boolean wasPaused = false;
     boolean isPlaying = false;
     boolean shufflesOn = false;
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +101,7 @@ public class FavouritesActivity extends AppCompatActivity {
                         break;
                     }
                 }
+                refreshColors();
             }
         });
         binding.next.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +127,8 @@ public class FavouritesActivity extends AppCompatActivity {
                         break;
                     }
                 }
+                refreshColors();
+
             }
         });
 
@@ -150,15 +155,36 @@ public class FavouritesActivity extends AppCompatActivity {
             }
         }
 
+
+
         // method for choosing song to play from the list itself
         binding.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("favourites", "position of clicked item is: " + position);
-                Log.d("favourites", "ID of clicked item is: " + id);
+
+
+//                refreshColors();
+//                if (title != null){
+//                    title.setTextColor(getResources().getColor(R.color.title_color));
+//                }
 
 
                 binding.title.setText(likedSongs.get(position).title());
+
+                String currentTitle = likedSongs.get(position).title();
+
+                for (int i = 0; i < binding.list.getChildCount(); i ++) {
+
+                    title = (TextView) binding.list.getChildAt(i).findViewById(R.id.title);
+                    if (title.getText().equals(currentTitle)) {
+                        title.setTextColor(getResources().getColor(R.color.playing_song));
+                    }else{
+                        title.setTextColor(getResources().getColor(R.color.title_color));
+                    }
+
+
+                }
+
                 binding.aritst.setText(likedSongs.get(position).artist());
 
                 // set all of the songs in songs array as not current
@@ -214,5 +240,28 @@ public class FavouritesActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    void refreshColors (){
+
+        String currentTitle = " ";
+        for (int j = 0; j < songs.size(); j++) {
+            if (songs.get(j).current()) {
+                currentTitle = songs.get(j).title();
+                break;
+            }
+        }
+
+        for (int i = 0; i < binding.list.getChildCount(); i ++) {
+
+            title = (TextView) binding.list.getChildAt(i).findViewById(R.id.title);
+            if (title.getText().equals(currentTitle)) {
+                title.setTextColor(getResources().getColor(R.color.playing_song));
+            }else{
+                title.setTextColor(getResources().getColor(R.color.title_color));
+            }
+
+
+        }
     }
 }
