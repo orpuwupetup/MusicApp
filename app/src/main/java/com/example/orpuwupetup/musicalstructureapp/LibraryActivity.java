@@ -53,7 +53,6 @@ public class LibraryActivity extends AppCompatActivity {
             binding.currentSong.setVisibility(View.VISIBLE);
         }
 
-
         //set which activity is open for all of the songs in songs array, so that SongAdapter could
         //set different images for some view in list, according to which activity is opened
         for(int i = 0; i<songs.size(); i++){
@@ -133,8 +132,6 @@ public class LibraryActivity extends AppCompatActivity {
             }
         });
 
-
-
         //method for setting current song view title and artist TextViews to right values on create
         setSongToCurrentSongDisplay();
 
@@ -166,8 +163,6 @@ public class LibraryActivity extends AppCompatActivity {
                 title = (TextView) view.findViewById(R.id.title);
                 title.setTextColor(getResources().getColor(R.color.playing_song));
 
-
-
                 // show current song display as Visible and set is playing and is paused as true, so
                 // other activities will know that some song is playing
                 binding.currentSong.setVisibility(View.VISIBLE);
@@ -176,7 +171,6 @@ public class LibraryActivity extends AppCompatActivity {
                 binding.currentPlayButton.setBackgroundResource(R.drawable.ic_pause);
 
                 setSongToCurrentSongDisplay();
-
             }
         });
         refreshColors();
@@ -206,11 +200,9 @@ public class LibraryActivity extends AppCompatActivity {
             changeActivity.putExtra("isShuffle", shufflesOn);
             LibraryActivity.this.startActivity(changeActivity);
         }
-
-
-
     }
 
+    // method for displaying current song on screen
     private void setSongToCurrentSongDisplay(){
         for (int i = 0; i < songs.size(); i++) {
             if (songs.get(i).current()) {
@@ -221,6 +213,7 @@ public class LibraryActivity extends AppCompatActivity {
         }
     }
 
+    //method for refreshing title colors accordingly to what song is currently playing
     void refreshColors (){
 
         String currentTitle = " ";
@@ -239,8 +232,6 @@ public class LibraryActivity extends AppCompatActivity {
             }else{
                 title.setTextColor(getResources().getColor(R.color.title_color));
             }
-
-
         }
     }
 }

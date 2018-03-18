@@ -190,9 +190,7 @@ public class CurrentActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
-
 
     //one method for all buttons associated with changing activity
     public void changeActivity (View v){
@@ -218,11 +216,10 @@ public class CurrentActivity extends AppCompatActivity {
             changeActivity.putExtra("isShuffle", shufflesOn);
             CurrentActivity.this.startActivity(changeActivity);
         }
-
-
-
     }
 
+
+    //method for displaying current song on screen
     private void displayCurrentSong(){
         for(int i = 0; i < songs.size(); i++){
             if(songs.get(i).current()) {
@@ -268,7 +265,6 @@ public class CurrentActivity extends AppCompatActivity {
                 } else {
                     timeLeftText = "" + minutesLeft + ":" + secondsLeft;
                 }
-
 
                 binding.timePlayed.setText(timePlayedText);
                 binding.timeLeft.setText(timeLeftText);

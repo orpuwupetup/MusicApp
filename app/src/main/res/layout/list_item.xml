@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:descendantFocusability="blocksDescendants"
-    android:background="@color/backgroundBlack">
+    android:background="@color/backgroundBlack"
+    android:descendantFocusability="blocksDescendants">
+
     <ImageView
         android:id="@+id/coverImage"
         android:layout_width="80dp"
+        android:layout_height="match_parent"
         android:padding="1dp"
-        android:src="@drawable/default_album_cover"
         android:scaleType="centerCrop"
-        android:layout_height="match_parent" />
+        android:src="@drawable/default_album_cover" />
 
     <android.support.constraint.Guideline
         android:id="@+id/horizontalGuidline"
@@ -25,44 +26,46 @@
         android:id="@+id/title"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:maxLines="2"
         android:text="Song Title"
         android:textColor="#ffffff"
-
-        android:textStyle="bold"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/horizontalGuidline"
         app:layout_constraintStart_toEndOf="@id/coverImage" />
+
     <TextView
         android:id="@+id/artist"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:text="Songs Artist Full Name"
-        android:textStyle="bold"
         android:maxLines="2"
-        app:layout_constraintStart_toStartOf="@id/title"
+        android:text="Songs Artist Full Name"
         android:textColor="@color/artist_color"
-        app:layout_constraintTop_toBottomOf="@id/title"/>
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
     <TextView
         android:id="@+id/songLength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3:25"
         android:layout_margin="8dp"
+        android:text="3:25"
         android:textColor="@color/colorAccent"
-        app:layout_constraintTop_toTopOf="@id/horizontalGuidline"
         app:layout_constraintBottom_toBottomOf="@id/horizontalGuidline"
-        app:layout_constraintStart_toEndOf="@id/title"/>
+        app:layout_constraintStart_toEndOf="@id/title"
+        app:layout_constraintTop_toTopOf="@id/horizontalGuidline" />
+
     <ImageButton
         android:id="@+id/likedOrDeleteFromFavourites"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@color/transparent"
         android:scaleType="centerCrop"
-        app:layout_constraintStart_toEndOf="@id/songLength"
+        app:layout_constraintBottom_toBottomOf="@id/horizontalGuidline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/horizontalGuidline"
-        app:layout_constraintBottom_toBottomOf="@id/horizontalGuidline"/>
+        app:layout_constraintStart_toEndOf="@id/songLength"
+        app:layout_constraintTop_toTopOf="@id/horizontalGuidline" />
 </android.support.constraint.ConstraintLayout>

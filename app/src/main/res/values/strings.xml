@@ -4,4 +4,12 @@
     <string name="main_screen">Home</string>
     <string name="now_playing">Now Playing</string>
     <string name="zero_played_time">0:00</string>
+    <string name="no_liked_songs_yet">No liked songs yet</string>
+    <string name="titleofthesong">Title of the song.</string>
+    <string name="artistsname">Artists name.</string>
+    <string name="song_title">Song title</string>
+    <string name="song_artist">Song Artist</string>
+    <string name="nothings_playing_yet">Nothings playing yet</string>
+    <string name="_0_00">0:00</string>
+    <string name="_3_49">3:49</string>
 </resources>

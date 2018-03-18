@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         //create list of songs to use in program
         songs = new ArrayList<Song>();
 
-        //add songs to the list
+        //add songs to the list, and add album covers to some of them
         songs.add(new Song("Beyonce", "Best Beyonce Song", 195));
         songs.get(0).setAlbumCover(R.drawable.beyonce);
         songs.add(new Song("Shakira", "Best Shakira Song", 127));
@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
             if(intent.getBundleExtra("BUNDLE") != null) {
                 songs = (ArrayList<Song>) args2.getSerializable("SONGSLIST");
             }
-
         }
 
         //hide current playing song display when nothing is playing)
@@ -79,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
             binding.playButton.setBackgroundResource(R.drawable.ic_pause);
             binding.currentPlayButton.setBackgroundResource(R.drawable.ic_pause);
             binding.currentSong.setVisibility(View.VISIBLE);
-
         }
         if(wasPaused){
             binding.currentSong.setVisibility(View.VISIBLE);
@@ -188,9 +186,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
-
-
-
     }
 
     // one method for all the buttons associated with changing of activities to minimalize code quantity
@@ -218,9 +213,6 @@ public class MainActivity extends AppCompatActivity {
 
             MainActivity.this.startActivity(changeActivity);
         }
-
-
-
     }
 }
 

@@ -104,6 +104,7 @@ public class FavouritesActivity extends AppCompatActivity {
                 refreshColors();
             }
         });
+
         binding.next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,7 +129,6 @@ public class FavouritesActivity extends AppCompatActivity {
                     }
                 }
                 refreshColors();
-
             }
         });
 
@@ -155,19 +155,10 @@ public class FavouritesActivity extends AppCompatActivity {
             }
         }
 
-
-
         // method for choosing song to play from the list itself
         binding.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
-//                refreshColors();
-//                if (title != null){
-//                    title.setTextColor(getResources().getColor(R.color.title_color));
-//                }
-
 
                 binding.title.setText(likedSongs.get(position).title());
 
@@ -181,8 +172,6 @@ public class FavouritesActivity extends AppCompatActivity {
                     }else{
                         title.setTextColor(getResources().getColor(R.color.title_color));
                     }
-
-
                 }
 
                 binding.aritst.setText(likedSongs.get(position).artist());
@@ -202,9 +191,6 @@ public class FavouritesActivity extends AppCompatActivity {
                         break;
                     }
                 }
-
-
-
 
                 binding.currentSong.setVisibility(View.VISIBLE);
                 isPlaying = true;
@@ -238,10 +224,8 @@ public class FavouritesActivity extends AppCompatActivity {
             changeActivity.putExtra("isShuffle", shufflesOn);
             FavouritesActivity.this.startActivity(changeActivity);
         }
-
-
     }
-
+// method for refreshing colors on screen (title color) accordingly to what song is playing
     void refreshColors (){
 
         String currentTitle = " ";
@@ -260,8 +244,6 @@ public class FavouritesActivity extends AppCompatActivity {
             }else{
                 title.setTextColor(getResources().getColor(R.color.title_color));
             }
-
-
         }
     }
 }

@@ -1,168 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
- xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<android.support.constraint.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/backgroundBlack"
-    tools:context="com.example.orpuwupetup.musicalstructureapp.MainActivity">
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guidlineVertical"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guidlineHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
-
-    <ImageButton
-        android:id="@+id/playButton"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:background="@color/transparent"
-        android:contentDescription="@string/play_button"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@id/guidlineHorizontal"
-        app:layout_constraintEnd_toEndOf="@id/guidlineVertical"
-        app:layout_constraintStart_toStartOf="@id/guidlineVertical"
-        app:layout_constraintTop_toTopOf="@id/guidlineHorizontal" />
-
-    <ImageButton
-        android:id="@+id/library"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@color/transparent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_libraryborder"
-        app:layout_constraintBottom_toTopOf="@id/guidlineHorizontal"
-        app:layout_constraintEnd_toEndOf="@id/guidlineVertical"
-        app:layout_constraintHorizontal_bias="0.4"
-        android:onClick="changeActivity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
-
-    <ImageButton
-        android:id="@+id/favourites"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@color/transparent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_likedborder"
-        app:layout_constraintBottom_toTopOf="@id/guidlineHorizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        android:onClick="changeActivity"
-        app:layout_constraintStart_toStartOf="@id/guidlineVertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/currentSong"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/colorPrimary"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_height="match_parent"
+        android:background="@color/backgroundBlack"
+        tools:context="com.example.orpuwupetup.musicalstructureapp.MainActivity">
 
-        <View
-            android:id="@+id/currentHorizontalGuidline"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
+        <android.support.constraint.Guideline
+            android:id="@+id/guidlineVertical"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidlineHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/unactiveProgress"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:layout_width="60dp"
-            android:layout_height="2dp"
-            android:background="@color/colorAccent"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintGuide_percent="0.4" />
 
         <ImageButton
-            android:id="@+id/currentPlayButton"
+            android:id="@+id/playButton"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:background="@color/transparent"
+            android:contentDescription="@string/play_button"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@id/guidlineHorizontal"
+            app:layout_constraintEnd_toEndOf="@id/guidlineVertical"
+            app:layout_constraintStart_toStartOf="@id/guidlineVertical"
+            app:layout_constraintTop_toTopOf="@id/guidlineHorizontal" />
+
+        <ImageButton
+            android:id="@+id/library"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@color/transparent"
-            android:padding="5dp"
+            android:onClick="changeActivity"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/ic_libraryborder"
+            app:layout_constraintBottom_toTopOf="@id/guidlineHorizontal"
+            app:layout_constraintEnd_toEndOf="@id/guidlineVertical"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.8" />
 
         <ImageButton
-            android:id="@+id/previous"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="16dp"
+            android:id="@+id/favourites"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:background="@color/transparent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_previousnoborder"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/currentPlayButton"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/next"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="16dp"
-            android:background="@color/transparent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_nextnoborder"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:maxLines="2"
             android:onClick="changeActivity"
-            android:text="Title of the song."
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/currentHorizontalGuidline"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_likedborder"
+            app:layout_constraintBottom_toTopOf="@id/guidlineHorizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/currentPlayButton" />
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="@id/guidlineVertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.8" />
 
-        <TextView
-            android:id="@+id/aritst"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:maxLines="2"
-            android:onClick="changeActivity"
-            android:text="Artists name."
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/currentPlayButton"
-            app:layout_constraintTop_toTopOf="@id/currentHorizontalGuidline" />
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/currentSong"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/colorPrimary"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <View
+                android:id="@+id/currentHorizontalGuidline"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/unactiveProgress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="60dp"
+                android:layout_height="2dp"
+                android:background="@color/colorAccent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/currentPlayButton"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@color/transparent"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/previous"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="16dp"
+                android:background="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_previousnoborder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/currentPlayButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/next"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="16dp"
+                android:background="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_nextnoborder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:maxLines="2"
+                android:onClick="changeActivity"
+                android:text="@string/titleofthesong"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/currentHorizontalGuidline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/currentPlayButton" />
+
+            <TextView
+                android:id="@+id/aritst"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:maxLines="2"
+                android:onClick="changeActivity"
+                android:text="@string/artistsname"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/currentPlayButton"
+                app:layout_constraintTop_toTopOf="@id/currentHorizontalGuidline" />
+
+
+        </android.support.constraint.ConstraintLayout>
 
 
     </android.support.constraint.ConstraintLayout>
-
-
-</android.support.constraint.ConstraintLayout>
 </layout>

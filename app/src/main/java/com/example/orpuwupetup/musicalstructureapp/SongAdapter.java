@@ -55,8 +55,6 @@ public class SongAdapter extends ArrayAdapter<Song> {
         // finding view for showing title of the song
         TextView title = (TextView) listItemView.findViewById(R.id.title);
 
-
-
         // setting text of title to the title of current song
         title.setText(currentSong.title());
 
@@ -119,8 +117,6 @@ public class SongAdapter extends ArrayAdapter<Song> {
                     }
                     currentSong.liked(false);
 
-
-
                     //TO DO, add toast saying that user deleted song from favourites
                 }
             });
@@ -131,8 +127,6 @@ public class SongAdapter extends ArrayAdapter<Song> {
         }else{
             title.setTextColor(getContext().getResources().getColor( R.color.title_color));
         }
-
-
 
         // return whole view with song informations
         return listItemView;
