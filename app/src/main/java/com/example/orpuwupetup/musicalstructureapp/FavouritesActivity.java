@@ -4,6 +4,7 @@ package com.example.orpuwupetup.musicalstructureapp;
         import android.databinding.DataBindingUtil;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
+        import android.util.Log;
         import android.view.View;
         import android.widget.AdapterView;
         import android.widget.ListView;
@@ -148,6 +149,43 @@ public class FavouritesActivity extends AppCompatActivity {
                 break;
             }
         }
+
+        // method for choosing song to play from the list itself
+        binding.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("favourites", "position of clicked item is: " + position);
+                Log.d("favourites", "ID of clicked item is: " + id);
+
+
+                binding.title.setText(likedSongs.get(position).title());
+                binding.aritst.setText(likedSongs.get(position).artist());
+
+                // set all of the songs in songs array as not current
+                for (int j = 0; j < songs.size(); j ++){
+                    if (songs.get(j).current()){
+                        songs.get(j).current(false);
+                    break;
+                    }
+                }
+
+                //set song in song array to current, accordingly to which element was clicked
+                for (int j = 0; j < songs.size(); j ++){
+                    if (songs.get(j).title().equals(likedSongs.get(position).title())){
+                        songs.get(j).current(true);
+                        break;
+                    }
+                }
+
+
+
+
+                binding.currentSong.setVisibility(View.VISIBLE);
+                isPlaying = true;
+                wasPaused = true;
+                binding.currentPlayButton.setBackgroundResource(R.drawable.ic_pause);
+            }
+        });
     }
 
     //one method for all buttons associated with changing activity

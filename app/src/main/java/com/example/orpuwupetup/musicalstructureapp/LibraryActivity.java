@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.orpuwupetup.musicalstructureapp.databinding.ActivityLibraryBinding;
@@ -128,13 +130,32 @@ public class LibraryActivity extends AppCompatActivity {
         });
 
         //method for setting current song view title and artist TextViews to right values on create
-        for (int i = 0; i < songs.size(); i++) {
-            if (songs.get(i).current()) {
-                binding.title.setText(songs.get(i).title());
-                binding.aritst.setText(songs.get(i).artist());
-                break;
+        setSongToCurrentSongDisplay();
+
+        // method for choosing song to play from the list itself
+            //get which song view was clicked
+        binding.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //set this song as current and all the rest as not current
+                for (int i = 0; i < songs.size(); i++){
+                    if (songs.get(i).current()){
+                        songs.get(i).current(false);
+                    }
+                }
+                songs.get(position).current(true);
+
+                // show current song display as Visible and set is playing and is paused as true, so
+                // other activities will know that some song is playing
+                binding.currentSong.setVisibility(View.VISIBLE);
+                isPlaying = true;
+                wasPaused = true;
+                binding.currentPlayButton.setBackgroundResource(R.drawable.ic_pause);
+
+                setSongToCurrentSongDisplay();
+
             }
-        }
+        });
     }
 
     //one method for all buttons associated with changing activity
@@ -164,5 +185,15 @@ public class LibraryActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void setSongToCurrentSongDisplay(){
+        for (int i = 0; i < songs.size(); i++) {
+            if (songs.get(i).current()) {
+                binding.title.setText(songs.get(i).title());
+                binding.aritst.setText(songs.get(i).artist());
+                break;
+            }
+        }
     }
 }
