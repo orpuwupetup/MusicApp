@@ -15,7 +15,7 @@ import com.example.orpuwupetup.musicalstructureapp.databinding.ActivityLibraryBi
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LibraryActivity extends AppCompatActivity {
+public class LibraryActivity extends AppCompatActivity implements View.OnClickListener{
 
 
     //this activity variables
@@ -174,6 +174,49 @@ public class LibraryActivity extends AppCompatActivity {
             }
         });
         refreshColors();
+        //buttons for changing activities
+        binding.title.setOnClickListener(this);
+        binding.aritst.setOnClickListener(this);
+        binding.home.setOnClickListener(this);
+        binding.favourites.setOnClickListener(this);
+        binding.current.setOnClickListener(this);
+    }
+    @Override
+    public void onClick(View v) {
+        Intent changeActivity;
+
+        switch (v.getId()){
+            case R.id.favourites:
+                changeActivity = new Intent(LibraryActivity.this, FavouritesActivity.class);
+                break;
+            case R.id.home:
+                changeActivity = new Intent(LibraryActivity.this, MainActivity.class);
+                break;
+            case R.id.current:
+                changeActivity = new Intent(LibraryActivity.this, CurrentActivity.class);
+                break;
+            case R.id.title:
+                changeActivity = new Intent(LibraryActivity.this, CurrentActivity.class);
+                break;
+            case R.id.aritst:
+                changeActivity = new Intent(LibraryActivity.this, CurrentActivity.class);
+                break;
+            default:
+                changeActivity = null;
+                break;
+        }
+
+        if(changeActivity != null) {
+
+            //create bundle with our songs array list and send it via intent to another activity
+            Bundle args = new Bundle();
+            args.putSerializable("SONGSLIST", (Serializable) songs);
+            changeActivity.putExtra("BUNDLE", args);
+            changeActivity.putExtra("IsPlaying", isPlaying);
+            changeActivity.putExtra("WasPaused", wasPaused);
+            changeActivity.putExtra("isShuffle", shufflesOn);
+            LibraryActivity.this.startActivity(changeActivity);
+        }
     }
 
     //one method for all buttons associated with changing activity

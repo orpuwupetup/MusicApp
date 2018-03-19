@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
@@ -13,7 +14,7 @@ import com.example.orpuwupetup.musicalstructureapp.databinding.ActivityMainBindi
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
 
     //initiation of app activity variables
@@ -186,19 +187,35 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
-    }
+    //buttons for changing activities
+        binding.title.setOnClickListener(this);
+        binding.aritst.setOnClickListener(this);
+        binding.favourites.setOnClickListener(this);
+        binding.library.setOnClickListener(this);
+}
+    @Override
+    public void onClick(View v) {
+        Intent changeActivity;
 
-    // one method for all the buttons associated with changing of activities to minimalize code quantity
-    public void changeActivity (View v){
-
-        Intent changeActivity = null;
-
-        if (v.getId() == binding.favourites.getId()){
-            changeActivity = new Intent(MainActivity.this, FavouritesActivity.class);
-        }else if(v.getId() == binding.library.getId()){
-            changeActivity = new Intent(MainActivity.this, LibraryActivity.class);
-        }else if(v.getId() == binding.title.getId() || v.getId() == binding.aritst.getId() || v.getId() == binding.title.getId()){
-            changeActivity = new Intent(MainActivity.this, CurrentActivity.class);
+        switch (v.getId()){
+            case R.id.favourites:
+                changeActivity = new Intent(MainActivity.this, FavouritesActivity.class);
+                break;
+            case R.id.library:
+                changeActivity = new Intent(MainActivity.this, LibraryActivity.class);
+                break;
+            case R.id.current:
+                changeActivity = new Intent(MainActivity.this, CurrentActivity.class);
+                break;
+            case R.id.title:
+                changeActivity = new Intent(MainActivity.this, CurrentActivity.class);
+                break;
+            case R.id.aritst:
+                changeActivity = new Intent(MainActivity.this, CurrentActivity.class);
+                break;
+            default:
+                changeActivity = null;
+                break;
         }
 
         if(changeActivity != null) {
@@ -210,7 +227,6 @@ public class MainActivity extends AppCompatActivity {
             changeActivity.putExtra("IsPlaying", isPlaying);
             changeActivity.putExtra("WasPaused", wasPaused);
             changeActivity.putExtra("isShuffle", shufflesOn);
-
             MainActivity.this.startActivity(changeActivity);
         }
     }

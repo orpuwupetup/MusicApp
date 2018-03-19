@@ -5,6 +5,7 @@
     tools:context="com.example.orpuwupetup.musicalstructureapp.CurrentActivity">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/whole"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradient_background">
@@ -22,7 +23,6 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/transparent"
-                android:onClick="changeActivity"
                 android:scaleType="centerCrop"
                 android:src="@drawable/home_unacitve"
                 app:layout_constraintEnd_toStartOf="@id/current"
@@ -33,7 +33,6 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/transparent"
-                android:onClick="changeActivity"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_play"
                 app:layout_constraintEnd_toStartOf="@id/library"
@@ -44,7 +43,6 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/transparent"
-                android:onClick="changeActivity"
                 android:scaleType="centerCrop"
                 android:src="@drawable/library_unactive"
                 app:layout_constraintEnd_toStartOf="@id/favourites"
@@ -55,7 +53,6 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/transparent"
-                android:onClick="changeActivity"
                 android:scaleType="centerCrop"
                 android:src="@drawable/unactive_favourites"
                 app:layout_constraintEnd_toEndOf="parent"

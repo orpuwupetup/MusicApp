@@ -15,7 +15,7 @@ package com.example.orpuwupetup.musicalstructureapp;
         import java.io.Serializable;
         import java.util.ArrayList;
 
-public class FavouritesActivity extends AppCompatActivity {
+public class FavouritesActivity extends AppCompatActivity implements View.OnClickListener{
 
     public ArrayList<Song> songs;
     public ArrayList<Song> likedSongs = new ArrayList<Song>();
@@ -198,22 +198,39 @@ public class FavouritesActivity extends AppCompatActivity {
                 binding.currentPlayButton.setBackgroundResource(R.drawable.ic_pause);
             }
         });
+        //buttons for changing activities
+        binding.title.setOnClickListener(this);
+        binding.aritst.setOnClickListener(this);
+        binding.home.setOnClickListener(this);
+        binding.library.setOnClickListener(this);
+        binding.current.setOnClickListener(this);
     }
+    @Override
+    public void onClick(View v) {
+        Intent changeActivity;
 
-    //one method for all buttons associated with changing activity
-    public void changeActivity(View v) {
-
-        Intent changeActivity = null;
-
-        if (v.getId() == binding.library.getId()) {
-            changeActivity = new Intent(FavouritesActivity.this, LibraryActivity.class);
-        } else if (v.getId() == binding.home.getId()) {
-            changeActivity = new Intent(FavouritesActivity.this, MainActivity.class);
-        } else if (v.getId() == binding.current.getId() || v.getId() == binding.aritst.getId() || v.getId() == binding.title.getId()) {
-            changeActivity = new Intent(FavouritesActivity.this, CurrentActivity.class);
+        switch (v.getId()){
+            case R.id.home:
+                changeActivity = new Intent(FavouritesActivity.this, MainActivity.class);
+                break;
+            case R.id.library:
+                changeActivity = new Intent(FavouritesActivity.this, LibraryActivity.class);
+                break;
+            case R.id.current:
+                changeActivity = new Intent(FavouritesActivity.this, CurrentActivity.class);
+                break;
+            case R.id.title:
+                changeActivity = new Intent(FavouritesActivity.this, CurrentActivity.class);
+                break;
+            case R.id.aritst:
+                changeActivity = new Intent(FavouritesActivity.this, CurrentActivity.class);
+                break;
+            default:
+                changeActivity = null;
+                break;
         }
 
-        if (changeActivity != null) {
+        if(changeActivity != null) {
 
             //create bundle with our songs array list and send it via intent to another activity
             Bundle args = new Bundle();
@@ -225,7 +242,8 @@ public class FavouritesActivity extends AppCompatActivity {
             FavouritesActivity.this.startActivity(changeActivity);
         }
     }
-// method for refreshing colors on screen (title color) accordingly to what song is playing
+
+    // method for refreshing colors on screen (title color) accordingly to what song is playing
     void refreshColors (){
 
         String currentTitle = " ";

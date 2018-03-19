@@ -6,16 +6,18 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.orpuwupetup.musicalstructureapp.databinding.ActivityCurrentBinding;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CurrentActivity extends AppCompatActivity {
+public class CurrentActivity extends AppCompatActivity implements View.OnClickListener{
 
     ActivityCurrentBinding binding;
     boolean isPlaying = false;
@@ -190,19 +192,29 @@ public class CurrentActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //buttons for changing activities
+        binding.home.setOnClickListener(this);
+        binding.favourites.setOnClickListener(this);
+        binding.library.setOnClickListener(this);
     }
+    @Override
+    public void onClick(View v) {
+        Intent changeActivity;
 
-    //one method for all buttons associated with changing activity
-    public void changeActivity (View v){
-
-        Intent changeActivity = null;
-
-        if (v.getId() == binding.favourites.getId()){
-            changeActivity = new Intent(CurrentActivity.this, FavouritesActivity.class);
-        }else if(v.getId() == binding.home.getId()){
-            changeActivity = new Intent(CurrentActivity.this, MainActivity.class);
-        }else if(v.getId() == binding.library.getId()){
-            changeActivity = new Intent(CurrentActivity.this, LibraryActivity.class);
+        switch (v.getId()){
+            case R.id.favourites:
+                changeActivity = new Intent(CurrentActivity.this, FavouritesActivity.class);
+                break;
+            case R.id.home:
+                changeActivity = new Intent(CurrentActivity.this, MainActivity.class);
+                break;
+            case R.id.library:
+                changeActivity = new Intent(CurrentActivity.this, LibraryActivity.class);
+                break;
+            default:
+                changeActivity = null;
+                break;
         }
 
         if(changeActivity != null) {
@@ -217,6 +229,7 @@ public class CurrentActivity extends AppCompatActivity {
             CurrentActivity.this.startActivity(changeActivity);
         }
     }
+
 
 
     //method for displaying current song on screen
