@@ -4,3 +4,5 @@ Music App user graphical interface made by me (without music playing feature YET
 in the future, add actual functionality, and more features.
 
 You can find .apk file of the app at the https://drive.google.com/file/d/14ms5t29Z6dvW-DEBZF6bcGP45nZ3AY95/view?usp=sharing
+
+<img src="MusicApp/Screenshots/Main.jpg" width=200>
