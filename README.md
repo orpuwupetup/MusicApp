@@ -5,4 +5,4 @@ in the future, add actual functionality, and more features.
 
 You can find .apk file of the app at the https://drive.google.com/file/d/14ms5t29Z6dvW-DEBZF6bcGP45nZ3AY95/view?usp=sharing
 
-<img src="https://github.com/orpuwupetup/MusicApp/Screenshots/Main.jpg" width=200>
+<img src="https://raw.githubusercontent.com/orpuwupetup/MusicApp/master/Screenshots/Main.jpg" width=200>
